@@ -6,10 +6,28 @@
 
     <StackLayout>
         <!-- Place new controls here -->
-        <Label Text="Welcome to Xamarin.Forms!" 
+        <Label Text="Welcome to Task Room!" 
            HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
-        <Label Text="Sup everybody" />
+           VerticalOptions="StartAndExpand"
+           FontSize="Large"/>
+        
+        <Button Text="Games" 
+               HorizontalOptions="CenterAndExpand"
+               VerticalOptions="CenterAndExpand"
+               BackgroundColor="Aqua"/>
+        
+        <Button Text="LeaderBoard" 
+               HorizontalOptions="CenterAndExpand"
+               VerticalOptions="EndAndExpand"/>
+        
+        <Button Text="Login" 
+               HorizontalOptions="CenterAndExpand"
+               VerticalOptions="EndAndExpand"/>
+        
+        <Button Text="Settings" 
+               HorizontalOptions="CenterAndExpand"
+               VerticalOptions="EndAndExpand"/>
+        
     </StackLayout>
 
 </ContentPage>
