@@ -7,9 +7,16 @@ using Xamarin.Forms;
 
 namespace TaskRoom
 {
-
     public partial class MainPage : ContentPage
     {
+        public static Frame container = new Frame
+        {
+            BorderColor = Color.White,
+            BackgroundColor = Color.FromRgb(204, 230, 255),
+            HorizontalOptions = LayoutOptions.CenterAndExpand,
+            VerticalOptions = LayoutOptions.StartAndExpand
+        };
+
         public MainPage()
         {
             //List<string> Buttons = new List<string>;
@@ -26,6 +33,8 @@ namespace TaskRoom
                 VerticalOptions = LayoutOptions.End,
                 HorizontalOptions = LayoutOptions.CenterAndExpand,
             };
+
+            Settings.Clicked += OnSettingsClicked;
 
             Button Leaderboards = new Button
             {
@@ -65,13 +74,7 @@ namespace TaskRoom
 
             StackLayout StackA = new StackLayout();
             
-            Frame container = new Frame
-            {
-                BorderColor = Color.White,
-                BackgroundColor = Color.FromRgb(204, 230, 255),
-                HorizontalOptions = LayoutOptions.CenterAndExpand,
-                VerticalOptions = LayoutOptions.StartAndExpand  
-            };
+            
 
             StackA.Children.Add(Welcome);
             foreach (Button Butt in Buttons)
@@ -85,6 +88,11 @@ namespace TaskRoom
             Content = MainStack;
 
             //InitializeComponent();
+        }
+
+        public void OnSettingsClicked(object sender, EventArgs args)
+        {
+            Navigation.PushAsync(new SettingsPage());
         }
     }
 
