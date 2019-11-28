@@ -11,6 +11,8 @@ namespace TaskRoom
 	{
 		public SettingsPage ()
 		{
+            StackLayout SettingsContent = new StackLayout();
+
 		}
 	}
 }
