@@ -42,6 +42,7 @@ namespace TaskRoom
                 FontSize = Device.GetNamedSize(NamedSize.Large, typeof(Label)) * 1.4,
                 VerticalOptions = LayoutOptions.CenterAndExpand,
             };
+            Leaderboards.Clicked += OnLeaderboardsClicked;
 
             Button Tasks = new Button
             {
@@ -98,6 +99,11 @@ namespace TaskRoom
         public void OnTasksClicked(object sender, EventArgs args)
         {
             Navigation.PushAsync(new TaskPage());
+        }
+
+        public void OnLeaderboardsClicked(object sender, EventArgs args)
+        {
+            Navigation.PushAsync(new LeaderboardPage());
         }
     }
 
