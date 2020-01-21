@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 
 using Xamarin.Forms;
+using TaskRoom.Methods;
 
 namespace TaskRoom
 {
@@ -11,10 +12,13 @@ namespace TaskRoom
     {
         public LeaderboardPage()
         {
+            GetSetDB Hammad = new GetSetDB();
+            string Testmessage;
+            Testmessage = Hammad.NewGetReq();
             Content = new StackLayout
             {
                 Children = {
-                    new Label { Text = "Welcome to Xamarin.Forms!" }
+                    new Label { Text = Testmessage }
                 }
             };
         }
