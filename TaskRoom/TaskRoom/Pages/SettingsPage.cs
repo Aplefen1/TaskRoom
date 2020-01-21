@@ -17,11 +17,11 @@ namespace TaskRoom
             
 
             //This creates a Grid object wich is native to xamarin, it creates a grid that is 1 tall by three wide
-            Grid FontSizes = new Grid();
-            FontSizes.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
-            FontSizes.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
-            FontSizes.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
-            FontSizes.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+            var FontSizes = new Grid() { ColumnSpacing = 5 };
+            FontSizes.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Auto) });
+            FontSizes.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Auto) });
+            FontSizes.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Auto) });
+            FontSizes.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Auto) });
 
             //This frame is used to present the data in an aesthetically pleasing and continious matter
             Frame container = new Frame
@@ -63,7 +63,9 @@ namespace TaskRoom
             FontChange.Text = "FontSize";
 
             Button Small, Medium, Large;
-            Small = Medium = Large = SizeButton;
+            Small = SizeButton;
+            Medium = SizeButton;
+            Large = SizeButton;
             Small.Text = "Small";
             Medium.Text = "Medium";
             Large.Text = "Large";
@@ -71,7 +73,7 @@ namespace TaskRoom
             //This populates the grid FontSizes grid I created at the beginning of the method
             FontSizes.Children.Add(Small, 0, 0);
             FontSizes.Children.Add(Medium, 1, 0);
-            FontSizes.Children.Add(Large, 2, 0);
+            //FontSizes.Children.Add(Large, 2, 0);
 
             //buttons = { ChangeProfile, ClassInformation };
             //Labels = { WelcomeMessage, }
@@ -85,11 +87,13 @@ namespace TaskRoom
                 if (elem.GetType() == typeof(Button))
                 {
                     Interactables.Children.Add((Button)elem);
+                    Console.WriteLine("Button");
                 }
 
                 else if (elem.GetType() == typeof(Label))
                 {
                     Interactables.Children.Add((Label)elem);
+                    Console.WriteLine("Label");
                 }
 
                 else
