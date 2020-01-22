@@ -11,7 +11,7 @@ namespace TaskRoom.Methods
     public class GetSetDB
     {
 
-        public string NewGetReq()
+        public string checkLogin(string username, string password)
         {
             string URL;
             URL = "http://10.84.129.125:1027/list/";

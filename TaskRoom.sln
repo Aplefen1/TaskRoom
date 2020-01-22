@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28307.852
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskRoom.Android", "TaskRoom\TaskRoom.Android\TaskRoom.Android.csproj", "{F97CEC25-A1C4-4AF1-AD75-BB3592475825}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskRoom", "TaskRoom\TaskRoom\TaskRoom.csproj", "{0C90C1F0-6370-4631-BD9E-64CD69D37AE4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskRoom", "TaskRoom\TaskRoom\TaskRoom.csproj", "{0C90C1F0-6370-4631-BD9E-64CD69D37AE4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
