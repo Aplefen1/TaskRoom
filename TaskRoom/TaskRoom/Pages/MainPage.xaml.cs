@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using TaskRoom.Pages;
 
 namespace TaskRoom
 {
@@ -59,6 +60,7 @@ namespace TaskRoom
                 VerticalOptions = LayoutOptions.End,
                 HorizontalOptions = LayoutOptions.End
             };
+            Login.Clicked += OnLoginClicked;
 
             Label Welcome = new Label
             {
@@ -104,6 +106,11 @@ namespace TaskRoom
         public void OnLeaderboardsClicked(object sender, EventArgs args)
         {
             Navigation.PushAsync(new LeaderboardPage());
+        }
+
+        public void OnLoginClicked(object sender, EventArgs args)
+        {
+            Navigation.PushAsync(new CreateUser());
         }
     }
 

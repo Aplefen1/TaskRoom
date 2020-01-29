@@ -12,13 +12,10 @@ namespace TaskRoom
     {
         public LeaderboardPage()
         {
-            GetSetDB Hammad = new GetSetDB();
-            string Testmessage;
-            Testmessage = Hammad.NewGetReq();
             Content = new StackLayout
             {
                 Children = {
-                    new Label { Text = Testmessage }
+                    new Label { Text = "yo figfags" }
                 }
             };
         }
