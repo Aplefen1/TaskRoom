@@ -35,8 +35,6 @@ namespace TaskRoom
                 HorizontalOptions = LayoutOptions.CenterAndExpand,
             };
 
-            Settings.Clicked += OnSettingsClicked;
-
             Button Leaderboards = new Button
             {
                 Text = "Leaderboards",
@@ -51,7 +49,6 @@ namespace TaskRoom
                 FontSize = Device.GetNamedSize(NamedSize.Large, typeof(Label)) * 2,
                 VerticalOptions = LayoutOptions.CenterAndExpand,
             };
-            Tasks.Clicked += OnTasksClicked;
 
             Button Login = new Button
             {
@@ -77,8 +74,6 @@ namespace TaskRoom
             StackLayout MainStack = new StackLayout();
 
             StackLayout StackA = new StackLayout();
-            
-            
 
             StackA.Children.Add(Welcome);
             foreach (Button Butt in Buttons)
@@ -92,6 +87,14 @@ namespace TaskRoom
             Content = MainStack;
 
             //InitializeComponent();
+
+            //Function Initisalisers
+
+            Settings.Clicked += OnSettingsClicked;
+            Tasks.Clicked += OnTasksClicked;
+
+
+            //###
         }
 
         public void OnSettingsClicked(object sender, EventArgs args)
@@ -100,7 +103,7 @@ namespace TaskRoom
         }
         public void OnTasksClicked(object sender, EventArgs args)
         {
-            Navigation.PushAsync(new TaskPage());
+            //Navigation.PushAsync(new TaskPage());
         }
 
         public void OnLeaderboardsClicked(object sender, EventArgs args)
