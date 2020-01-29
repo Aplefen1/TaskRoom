@@ -10,43 +10,14 @@ namespace TaskRoom.Methods
 {
     public class Webservice
     {
-
+        public string status;
         public static readonly HttpClient Client = new HttpClient();
+        public string URL = "http://10.84.129.125:1027/";
 
-        public string NewGetReq()
-        {
-            string URL;
-            URL = "http://10.84.129.125:1027/list/";
-
-            WebRequest GETURL;
-            GETURL = WebRequest.Create(URL);
-
-            //WebProxy MyProx = new WebProxy("MyProx", 8000);
-            //MyProx.BypassProxyOnLocal = true;
-            //GETURL.Proxy = MyProx;
-
-            Stream WebStream;
-            WebStream = GETURL.GetResponse().GetResponseStream();
-
-            StreamReader WebReader = new StreamReader(WebStream);
-            string sLine = "";
-            int i = 0;
-            while (sLine != null)
-            {
-                i++;
-                sLine = WebReader.ReadLine();
-                if (sLine != null)
-                {
-                    return sLine;
-                }
-
-            };
-            return "oopsie";
-        }
-        public async void Login(string name, string lastName, string username, string password, string age)
+        public async void newUser(string name, string lastName, string username, string password, string age)
         {
             //This is the URL to the part of the API that contains a function that inserts the record to the database
-            string URL = "http://10.84.129.125:1027/newChild";
+            string gURL = URL + "showChild";
 
             //The dictionary is used to define the new child
             Dictionary<string, string> postData = new Dictionary<string, string>()
@@ -62,13 +33,26 @@ namespace TaskRoom.Methods
 
             // Set the ContentType property of the WebRequest.
             //request.ContentType = "application/x-www-form-urlencoded";
-            var response = await Client.PostAsync(URL, content);
+            var response = await Client.PostAsync(gURL, content);
             var responseString = await response.Content.ReadAsStringAsync();
         }
 
-        public string findUser(string name, string username)
+        public async void checkUser(string username, string password)
         {
-            string URL = "http://10.84.129.125:1027/showChild";
+            string cURL = URL + "confirmLogin";
+
+            Dictionary<string, string> postData = new Dictionary<string, string>()
+            {
+                { "username", username },
+                { "password", password }
+            };
+
+            var content = new FormUrlEncodedContent(postData);
+
+            var response = await Client.PostAsync(cURL, content);
+            var responseString = await response.Content.ReadAsStringAsync();
+
+            status = responseString;
 
         }
 

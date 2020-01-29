@@ -113,7 +113,7 @@ namespace TaskRoom
 
         public void OnLoginClicked(object sender, EventArgs args)
         {
-            Navigation.PushAsync(new CreateUser());
+            Navigation.PushAsync(new LoginPage());
         }
     }
 

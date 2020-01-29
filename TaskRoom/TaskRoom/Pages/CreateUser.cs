@@ -69,7 +69,7 @@ namespace TaskRoom.Pages
             string inputtedPWord = PWord.Text;
             string inputtedAge = Age.Text;
 
-            Connection.Login(inputtedName, inputtedLName, inputtedUName, inputtedPWord, inputtedAge);
+            Connection.newUser(inputtedName, inputtedLName, inputtedUName, inputtedPWord, inputtedAge);
 
         }
 
