@@ -35,8 +35,8 @@ namespace TaskRoom.Pages
                 Text = "New User",
                 HorizontalOptions = LayoutOptions.EndAndExpand,
             };
-            newUser.Clicked += onNewUserClicked;
-            Submit.Clicked += onSubmit;
+            newUser.Clicked += OnNewUserClicked;
+            Submit.Clicked += OnSubmit;
 
             Entry UName = new Entry { HorizontalOptions = LayoutOptions.CenterAndExpand };
             Entry PWord = new Entry { HorizontalOptions = LayoutOptions.CenterAndExpand };
@@ -56,9 +56,14 @@ namespace TaskRoom.Pages
             Content = contentStack;
         }
 
-        public void onNewUserClicked(object Sender, EventArgs args)
+        public void OnNewUserClicked(object Sender, EventArgs args)
         {
             Navigation.PushAsync(new CreateUser());
+        }
+
+        public void OnSubmit(object Sender, EventArgs args)
+        {
+            webservice
         }
 
     }
