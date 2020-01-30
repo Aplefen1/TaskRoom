@@ -10,7 +10,7 @@ namespace TaskRoom.Methods
 {
     public class Webservice
     {
-        public string status;
+        public string status = "The big stink";
         public static readonly HttpClient Client = new HttpClient();
         public string URL = "http://10.84.129.125:1027/";
 
@@ -39,19 +39,21 @@ namespace TaskRoom.Methods
 
         public async void checkUser(string username, string password)
         {
+            //adds the url for the login checking view
             string cURL = URL + "confirmLogin";
 
+            
             Dictionary<string, string> postData = new Dictionary<string, string>()
             {
                 { "username", username },
                 { "password", password }
             };
-
+            //encodes the data into a query 
             var content = new FormUrlEncodedContent(postData);
-
+            //sends the content and waits for a response
             var response = await Client.PostAsync(cURL, content);
             var responseString = await response.Content.ReadAsStringAsync();
-
+            //the response is set to the status attribute in the class to be used externally as an indicator
             status = responseString;
 
         }

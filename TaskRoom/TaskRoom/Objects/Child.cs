@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TaskRoom
 {
-    class Child
+    public class Child
     {
         int Id;
         string Name;

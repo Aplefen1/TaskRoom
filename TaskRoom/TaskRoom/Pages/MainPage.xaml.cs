@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using TaskRoom.Pages;
+using TaskRoom.Objects;
 
 namespace TaskRoom
 {
@@ -18,15 +19,17 @@ namespace TaskRoom
             VerticalOptions = LayoutOptions.StartAndExpand
         };
 
+        public GlobalSettings settings = new GlobalSettings();
+
         public MainPage()
         {
-            //List<string> Buttons = new List<string>;
-            //Buttons = ["Play Game", "Leaderboards", "Settings", "Login"]
+            StackLayout MainStack = new StackLayout();
+            StackLayout StackA = new StackLayout();
 
             Padding = new Thickness(30);
 
-
             //Elements in the stack
+            /////////////////////////////////////////////////////////////////////////
             Button Settings = new Button
             {
                 Text = "Settings",
@@ -67,13 +70,7 @@ namespace TaskRoom
             };
 
             var Buttons = new List<Button> { Tasks, Leaderboards, Settings, Login };
-
-
-            //End of elements in the stack (Move this to a namespace or list to enumerate through the items??
-
-            StackLayout MainStack = new StackLayout();
-
-            StackLayout StackA = new StackLayout();
+            ///////////////////////////////////////////////////////////////////////////
 
             StackA.Children.Add(Welcome);
             foreach (Button Butt in Buttons)

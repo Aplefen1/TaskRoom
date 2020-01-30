@@ -10,7 +10,13 @@ namespace TaskRoom.Pages
 {
     public class LoginPage : ContentPage
     {
+
+        //The fields where the user inputs their login data
+        public Entry UName = new Entry { HorizontalOptions = LayoutOptions.CenterAndExpand };
+        public Entry PWord = new Entry { HorizontalOptions = LayoutOptions.CenterAndExpand };
+        //Creation of the Webervice class to be used for the login function
         public Webservice webservice = new Webservice();
+
         public LoginPage()
         {
             StackLayout detailsStack = new StackLayout();
@@ -23,33 +29,38 @@ namespace TaskRoom.Pages
                 HorizontalOptions = LayoutOptions.CenterAndExpand,
                 VerticalOptions = LayoutOptions.StartAndExpand
             };
-
+            //Button that runs the function that submits the info
             var Submit = new Button
             {
                 Text = "Submit",
                 HorizontalOptions = LayoutOptions.EndAndExpand,
             };
-
+            //Goes to the create user page
             var newUser = new Button
             {
                 Text = "New User",
                 HorizontalOptions = LayoutOptions.EndAndExpand,
             };
+
+            //label that shows the output of the login function for debugging
+            var status = new Label
+            {
+                Text = webservice.status
+            };
+
             newUser.Clicked += OnNewUserClicked;
             Submit.Clicked += OnSubmit;
-
-            Entry UName = new Entry { HorizontalOptions = LayoutOptions.CenterAndExpand };
-            Entry PWord = new Entry { HorizontalOptions = LayoutOptions.CenterAndExpand };
-
+       
             UName.Placeholder = "Username";
             PWord.Placeholder = "Password";
+            //Adding the Elements to the stack
+            detailsStack.Children.Add(UName);
+            detailsStack.Children.Add(PWord);
+            detailsStack.Children.Add(Submit);
+            detailsStack.Children.Add(newUser);
+            detailsStack.Children.Add(status);
 
-            contentStack.Children.Add(UName);
-            contentStack.Children.Add(PWord);
-            contentStack.Children.Add(Submit);
-            contentStack.Children.Add(newUser);
-
-            container.Content = contentStack;
+            container.Content = detailsStack;
 
             contentStack.Children.Add(container);
 
@@ -60,10 +71,12 @@ namespace TaskRoom.Pages
         {
             Navigation.PushAsync(new CreateUser());
         }
-
+        //Function thats called when submit is pressed
         public void OnSubmit(object Sender, EventArgs args)
         {
-            webservice
+            string a = UName.Text;
+            string b = PWord.Text;
+            webservice.checkUser(a, b);
         }
 
     }

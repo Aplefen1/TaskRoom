@@ -33,77 +33,56 @@ namespace TaskRoom
             };
 
             //I create generic label and button objects that I will use later
-            Label GenericText = new Label
-            {
-                FontSize = Device.GetNamedSize(NamedSize.Large, typeof(Label)),
-                TextColor = Color.DarkGray,
-            };
-
-            Button GenericButton = new Button
-            {
-                FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Button)),
-                HorizontalOptions = LayoutOptions.Center,
-            };
-
-            Button SizeButton = new Button
-            {
-                FontSize = Device.GetNamedSize(NamedSize.Small, typeof(Button)),
-                BackgroundColor = Color.Cornsilk,
-            };
 
             //This defines the content of the page by inheriting from the generic models above
-            Button ChangeProfile, ClassInformation;
-            ChangeProfile = ClassInformation = GenericButton;
-            ChangeProfile.Text = "Change Profile Information";
-            ClassInformation.Text = "View Class Information";
+            Button ChangeProfile = new Button
+            {
+                Text = "Change Profile Information",
+            };
+            Button ClassInformation = new Button
+            {
+                Text = "View Class Information",
+            };
 
-            Label WelcomeMessage, FontChange;
-            WelcomeMessage = FontChange = GenericText;
-            WelcomeMessage.Text = "Settings";
-            FontChange.Text = "FontSize";
+            Label WelcomeMessage = new Label
+            {
+                Text = "Settings",
+            };
+            Label FontChange = new Label
+            {
+                Text = "FontSize"
+            };
 
-            Button Small, Medium, Large;
-            Small = SizeButton;
-            Medium = SizeButton;
-            Large = SizeButton;
-            Small.Text = "Small";
-            Medium.Text = "Medium";
-            Large.Text = "Large";
+            Button Small = new Button
+            {
+                Text = "Small"
+            };
+            Button Medium = new Button
+            {
+                Text = "Medium"
+            };
+            Button Large = new Button()
+            {
+                Text = "Large"
+            };
 
             //This populates the grid FontSizes grid I created at the beginning of the method
             FontSizes.Children.Add(Small, 0, 0);
             FontSizes.Children.Add(Medium, 1, 0);
-            //FontSizes.Children.Add(Large, 2, 0);
-
-            //buttons = { ChangeProfile, ClassInformation };
-            //Labels = { WelcomeMessage, }
+            FontSizes.Children.Add(Large, 2, 0);
 
             FontSizes.HorizontalOptions = LayoutOptions.Start;
-        
+
             //Maybe put the grid within another container??
-            object[] Elements = new object[5] { WelcomeMessage, FontChange, FontSizes, ChangeProfile, ClassInformation };
-            foreach(var elem in Elements)
-            {
-                if (elem.GetType() == typeof(Button))
-                {
-                    Interactables.Children.Add((Button)elem);
-                    Console.WriteLine("Button");
-                }
+            Interactables.Children.Add(WelcomeMessage);
+            Interactables.Children.Add(FontChange);
+            Interactables.Children.Add(FontSizes);
+            Interactables.Children.Add(ChangeProfile);
+            Interactables.Children.Add(ClassInformation);
 
-                else if (elem.GetType() == typeof(Label))
-                {
-                    Interactables.Children.Add((Label)elem);
-                    Console.WriteLine("Label");
-                }
-
-                else
-                {
-                    Interactables.Children.Add((Grid)elem);
-                };
-            }
-            container.Content = Interactables;
             SettingsContent.Children.Add(container);
-            Content = SettingsContent;
+            Content = Interactables;
         }
 	}
+
 }
