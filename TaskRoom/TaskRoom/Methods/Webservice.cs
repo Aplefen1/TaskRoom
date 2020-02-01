@@ -52,7 +52,7 @@ namespace TaskRoom.Methods
             var content = new FormUrlEncodedContent(postData);
             //sends the content and waits for a response
             var response = await Client.PostAsync(cURL, content);
-            var responseString = await response.Content.ReadAsStringAsync();
+            string responseString = await response.Content.ReadAsStringAsync();
             //the response is set to the status attribute in the class to be used externally as an indicator
             status = responseString;
 

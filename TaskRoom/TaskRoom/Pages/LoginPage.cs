@@ -15,7 +15,11 @@ namespace TaskRoom.Pages
         public Entry UName = new Entry { HorizontalOptions = LayoutOptions.CenterAndExpand };
         public Entry PWord = new Entry { HorizontalOptions = LayoutOptions.CenterAndExpand };
         //Creation of the Webervice class to be used for the login function
-        public Webservice webservice = new Webservice();
+        public static Webservice webservice = new Webservice();
+        public Label status = new Label
+        {
+            Text = webservice.status
+        };
 
         public LoginPage()
         {
@@ -43,10 +47,6 @@ namespace TaskRoom.Pages
             };
 
             //label that shows the output of the login function for debugging
-            var status = new Label
-            {
-                Text = webservice.status
-            };
 
             newUser.Clicked += OnNewUserClicked;
             Submit.Clicked += OnSubmit;
@@ -77,6 +77,7 @@ namespace TaskRoom.Pages
             string a = UName.Text;
             string b = PWord.Text;
             webservice.checkUser(a, b);
+            status.Text = webservice.status;
         }
 
     }
