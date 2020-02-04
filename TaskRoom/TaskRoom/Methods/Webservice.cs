@@ -13,11 +13,13 @@ namespace TaskRoom.Methods
         public string status = "The big stink";
         public static readonly HttpClient Client = new HttpClient();
         public string URL = "http://10.84.129.125:1027/";
+        public string returnedChildren;
+        public string returnedClasses;
 
         public async void newUser(string name, string lastName, string username, string password, string age)
         {
             //This is the URL to the part of the API that contains a function that inserts the record to the database
-            string gURL = URL + "showChild";
+            string gURL = URL + "newChild";
 
             //The dictionary is used to define the new child
             Dictionary<string, string> postData = new Dictionary<string, string>()
@@ -58,5 +60,33 @@ namespace TaskRoom.Methods
 
         }
 
+        public async void getChildren(string className)
+        {
+            string eURL = URL + "getClassContents";
+            Dictionary<string, string> postData = new Dictionary<string, string>()
+            {
+                { "classname", className }
+            };
+
+            var content = new FormUrlEncodedContent(postData);
+            var response = await Client.PostAsync(eURL, content);
+
+            string responseString = await response.Content.ReadAsStringAsync();
+            returnedChildren = responseString;
+        }
+
+        public async void getClassrooms()
+        {
+            string rURL = URL + "returnClasses";
+            Dictionary<string, string> postData = new Dictionary<string, string>()
+            {
+                {"Pinky", "Ponky" }
+            };
+            var content = new FormUrlEncodedContent(postData);
+            var response = await Client.PostAsync(rURL, content);
+            var responseString = await response.Content.ReadAsStringAsync();
+            returnedClasses = responseString;
+
+        }
     }
 }

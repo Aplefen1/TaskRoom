@@ -10,6 +10,7 @@ namespace TaskRoom.Objects
         private string fontSize;
         Dictionary<string, string> loginInformation;
         Child currentChild;
+        List<string> retrivedClasses = new List<string>();
 
         public void setLoginStatus(bool status)
         {
@@ -19,6 +20,7 @@ namespace TaskRoom.Objects
         {
             this.currentChild = child;
         }
+
 
     }
 }
