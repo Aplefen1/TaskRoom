@@ -5,6 +5,10 @@ using System.Net.Http;
 using System.Net;
 using System.IO;
 using System.Web;
+using TaskRoom.Objects;
+using Newtonsoft.Json;
+using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace TaskRoom.Methods
 {
@@ -14,7 +18,7 @@ namespace TaskRoom.Methods
         public static readonly HttpClient Client = new HttpClient();
         public string URL = "http://10.84.129.125:1027/";
         public string returnedChildren;
-        public string returnedClasses;
+        public List<string> returnedClasses;
 
         public async void newUser(string name, string lastName, string username, string password, string age)
         {
@@ -75,17 +79,18 @@ namespace TaskRoom.Methods
             returnedChildren = responseString;
         }
 
-        public async void getClassrooms()
+        public async Task<List<string>> getClassrooms()
         {
             string rURL = URL + "returnClasses";
-            Dictionary<string, string> postData = new Dictionary<string, string>()
-            {
-                {"Pinky", "Ponky" }
-            };
-            var content = new FormUrlEncodedContent(postData);
-            var response = await Client.PostAsync(rURL, content);
+            var response = await Client.GetAsync(rURL);
             var responseString = await response.Content.ReadAsStringAsync();
-            returnedClasses = responseString;
+            Debug.WriteLine(responseString);
+
+            GetJsonClasses Data = JsonConvert.DeserializeObject<GetJsonClasses>(responseString);
+            //Debug.WriteLine(Data.names[0]);
+
+            return Data.names;
+            //Debug.WriteLine(returnedClasses[0]);
 
         }
     }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 
 using Xamarin.Forms;
+using System.Diagnostics;
 using TaskRoom.Methods;
 
 namespace TaskRoom
@@ -12,6 +13,8 @@ namespace TaskRoom
     {
         public Webservice Connection = new Webservice();
         public Label abc = new Label { Text = "TEst" };
+        public List<string> dropDownList;
+        public StackLayout info = new StackLayout();
 
         public LeaderboardPage()
         {
@@ -20,16 +23,23 @@ namespace TaskRoom
                 Text = "View Classes"
             };
             sub.Clicked += SubOnClicked;
-            StackLayout ssdsdnt = new StackLayout();
-            ssdsdnt.Children.Add(abc);
-            ssdsdnt.Children.Add(sub);
-            Content = ssdsdnt;
+
+            info.Children.Add(abc);
+            info.Children.Add(sub);
+            Content = info;
         }
 
-        public void SubOnClicked(object Sender, EventArgs args)
+        public async void SubOnClicked(object Sender, EventArgs args)
         {
-            Connection.getClassrooms();
-            abc.Text = Connection.returnedClasses;
+            dropDownList = await Connection.getClassrooms();
+            foreach(var o in dropDownList)
+            {
+                Button className = new Button
+                {
+                    Text = o
+                };
+                info.Children.Add(className);
+            }
         }
         
     }
