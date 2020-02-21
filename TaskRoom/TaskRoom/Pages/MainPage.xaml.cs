@@ -100,7 +100,7 @@ namespace TaskRoom
         }
         public void OnTasksClicked(object sender, EventArgs args)
         {
-            //Navigation.PushAsync(new TaskPage());
+            Navigation.PushAsync(new TaskPage());
         }
 
         public void OnLeaderboardsClicked(object sender, EventArgs args)

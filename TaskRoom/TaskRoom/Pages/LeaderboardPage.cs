@@ -6,6 +6,7 @@ using System.Text;
 using Xamarin.Forms;
 using System.Diagnostics;
 using TaskRoom.Methods;
+using TaskRoom.Objects;
 
 namespace TaskRoom
 {
@@ -32,15 +33,20 @@ namespace TaskRoom
         public async void SubOnClicked(object Sender, EventArgs args)
         {
             dropDownList = await Connection.getClassrooms();
-            foreach(var o in dropDownList)
+            foreach (var o in dropDownList)
             {
                 Button className = new Button
                 {
                     Text = o
                 };
+                className.Clicked += OnNameClicked;
                 info.Children.Add(className);
             }
         }
-        
+        public async void OnNameClicked(object Sender, EventArgs args)
+        {
+            List<Objects.Child> childrenInClass;
+            childrenInClass = await Connection.GetChildren("Blue Class");
+        }
     }
 }

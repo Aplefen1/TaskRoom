@@ -16,7 +16,7 @@ namespace TaskRoom.Methods
     {
         public string status = "The big stink";
         public static readonly HttpClient Client = new HttpClient();
-        public string URL = "http://10.84.129.125:1027/";
+        public string URL = "http://169.254.80.80:8000/";
         public string returnedChildren;
         public List<string> returnedClasses;
 
@@ -64,9 +64,9 @@ namespace TaskRoom.Methods
 
         }
 
-        public async void getChildren(string className)
+        public async Task<List<Objects.Child>> GetChildren(string className)
         {
-            string eURL = URL + "getClassContents";
+            string eURL = URL + "getClassroom";
             Dictionary<string, string> postData = new Dictionary<string, string>()
             {
                 { "classname", className }
@@ -76,7 +76,10 @@ namespace TaskRoom.Methods
             var response = await Client.PostAsync(eURL, content);
 
             string responseString = await response.Content.ReadAsStringAsync();
-            returnedChildren = responseString;
+
+            LeaderboardRoot Data = JsonConvert.DeserializeObject<LeaderboardRoot>(responseString);
+            Debug.WriteLine(Data.children);
+            return Data.children;
         }
 
         public async Task<List<string>> getClassrooms()

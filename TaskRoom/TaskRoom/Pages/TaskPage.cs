@@ -29,6 +29,7 @@ namespace TaskRoom
             var frogLeap = new Button { Text = "Frog Leap" };
             var spelling = new Button { Text = "Spelling Game" };
             var test = new Button { Text = "Test" };
+            test
 
             grid.Children.Add(frogLeap, 0, 0);
             grid.Children.Add(spelling, 1, 0);
