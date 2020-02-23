@@ -29,7 +29,6 @@ namespace TaskRoom
             Padding = new Thickness(30);
 
             //Elements in the stack
-            /////////////////////////////////////////////////////////////////////////
             Button Settings = new Button
             {
                 Text = "Settings",
@@ -70,7 +69,6 @@ namespace TaskRoom
             };
 
             var Buttons = new List<Button> { Tasks, Leaderboards, Settings, Login };
-            ///////////////////////////////////////////////////////////////////////////
 
             StackA.Children.Add(Welcome);
             foreach (Button Butt in Buttons)
@@ -83,15 +81,9 @@ namespace TaskRoom
 
             Content = MainStack;
 
-            //InitializeComponent();
-
-            //Function Initisalisers
-
             Settings.Clicked += OnSettingsClicked;
             Tasks.Clicked += OnTasksClicked;
 
-
-            //###
         }
 
         public void OnSettingsClicked(object sender, EventArgs args)

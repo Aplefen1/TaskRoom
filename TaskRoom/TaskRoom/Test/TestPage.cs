@@ -9,14 +9,45 @@ namespace TaskRoom.Test
 {
     public class TestPage : ContentPage
     {
+        public Entry numberOfQuestions = new Entry
+        {
+            HorizontalOptions = LayoutOptions.CenterAndExpand,
+            VerticalOptions = LayoutOptions.Start,
+            Placeholder = "Number Of Questions"
+        };
+
         public TestPage()
         {
-            Content = new StackLayout
+            Button createTest = new Button
             {
-                Children = {
-                    new Label { Text = "Welcome to Xamarin.Forms!" }
-                }
+                HorizontalOptions = LayoutOptions.CenterAndExpand,
+                VerticalOptions = LayoutOptions.Start,
+                Text = "Create Test"
             };
+            createTest.Clicked += CreateTestOnClicked;
         }
+
+        public void CreateTestOnClicked(object sender, EventArgs args)
+        {
+            int questions;
+            bool valid = true;
+            try
+            {
+                questions = int.Parse(numberOfQuestions.Text);
+            }
+            catch
+            {
+                numberOfQuestions.Text = "Invalid input";
+                valid = false;
+            }
+            if (valid == true)
+            {
+
+            }
+
+        }
+
+
+
     }
 }
