@@ -29,7 +29,7 @@ namespace TaskRoom.Test
 
         public void CreateTestOnClicked(object sender, EventArgs args)
         {
-            int questions;
+            int questions = 0;
             bool valid = true;
             try
             {
@@ -42,7 +42,7 @@ namespace TaskRoom.Test
             }
             if (valid == true)
             {
-
+                Navigation.PushAsync(new Question());
             }
 
         }

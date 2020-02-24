@@ -9,24 +9,36 @@ namespace TaskRoom.Test
 {
     public class Question : ContentPage
     {
-        public Question(ref bool correct)
+        public Entry answer = new Entry
         {
-            ///////////////////////////////////////////////////////// 
-            Label equation = new Label {};
-            Entry answer = new Entry
-            {
-                Placeholder = "Your Answer Here"
-            };
-            Button submitAnswer = new Button {
-                Text = "Submit"
-            };
-            submitAnswer.Clicked += OnSubmitAnswerClicked();
-    
-            int numberOne = Number();
-            int numberTwo = Number();
-            int correctAnswer = CalculateAnswer(numberOne, numberTwo);
+            Placeholder = "Your Answer Here"
+        };
+        public Grid questions = new Grid();
+        public List<ColumnDefinition> columns = new List<ColumnDefinition>();
+        public Question(int noQuestions)
+        {
+            ColumnDefinition numColumn = new ColumnDefinition { Width = GridLength.Auto };
+            ColumnDefinition eq = new ColumnDefinition { Width = GridLength.Auto };
+            ColumnDefinition ent = new ColumnDefinition { Width = GridLength.Auto };
+            questions.
 
-            equation.Text = numberOne.ToString() + " + " + numberTwo.ToString();
+            for (int i = 0; i < noQuestions; i++)
+            {
+                int num1 = Number();
+                int num2 = Number();
+                Label qNum = new Label
+                {
+                    Text = i.ToString()
+                };
+                Label equation = new Label {
+                    Text = num1.ToString() + " + " + num2.ToString(),
+                };
+                Entry ans = new Entry
+                {
+                    Placeholder = "Answer"
+                };
+
+            }
         }
 
         public int Number()
@@ -40,7 +52,7 @@ namespace TaskRoom.Test
             return numa + numb;
         }
 
-        public void OnSubmitAnswerClicked(object Sender, EventArgs args, ref bool correct)
+        public void OnSubmitAnswerClicked(object Sender, EventArgs args)
         {
 
         }
