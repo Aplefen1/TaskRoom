@@ -25,6 +25,11 @@ namespace TaskRoom.Test
                 Text = "Create Test"
             };
             createTest.Clicked += CreateTestOnClicked;
+
+            StackLayout contents = new StackLayout();
+            contents.Children.Add(numberOfQuestions);
+            contents.Children.Add(createTest);
+            Content = contents;
         }
 
         public void CreateTestOnClicked(object sender, EventArgs args)
@@ -42,11 +47,11 @@ namespace TaskRoom.Test
             }
             if (valid == true)
             {
-                Navigation.PushAsync(new Question());
+                Navigation.PushAsync(new Question(questions));
             }
 
         }
-
+        
 
 
     }

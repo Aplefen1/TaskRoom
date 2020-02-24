@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using TaskRoom.Pages;
 using TaskRoom.Objects;
+using TaskRoom.Test;
 
 namespace TaskRoom
 {
@@ -92,7 +93,7 @@ namespace TaskRoom
         }
         public void OnTasksClicked(object sender, EventArgs args)
         {
-            Navigation.PushAsync(new TaskPage());
+            Navigation.PushAsync(new TestPage());
         }
 
         public void OnLeaderboardsClicked(object sender, EventArgs args)

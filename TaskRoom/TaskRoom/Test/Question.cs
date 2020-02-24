@@ -13,22 +13,28 @@ namespace TaskRoom.Test
         {
             Placeholder = "Your Answer Here"
         };
+
         public Grid questions = new Grid();
-        public List<ColumnDefinition> columns = new List<ColumnDefinition>();
+        public Random r = new Random();
+
         public Question(int noQuestions)
         {
-            ColumnDefinition numColumn = new ColumnDefinition { Width = GridLength.Auto };
-            ColumnDefinition eq = new ColumnDefinition { Width = GridLength.Auto };
-            ColumnDefinition ent = new ColumnDefinition { Width = GridLength.Auto };
-            questions.
+            ColumnDefinition numColumn = new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) };
+            ColumnDefinition eq = new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) };
+            ColumnDefinition ent = new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) };
+            questions.ColumnDefinitions.Add(numColumn);
+            questions.ColumnDefinitions.Add(eq);
+            questions.ColumnDefinitions.Add(ent);
 
             for (int i = 0; i < noQuestions; i++)
             {
+                System.Threading.Thread.Sleep(2);
                 int num1 = Number();
+                System.Threading.Thread.Sleep(2);
                 int num2 = Number();
                 Label qNum = new Label
                 {
-                    Text = i.ToString()
+                    Text = (i + 1).ToString()
                 };
                 Label equation = new Label {
                     Text = num1.ToString() + " + " + num2.ToString(),
@@ -37,13 +43,22 @@ namespace TaskRoom.Test
                 {
                     Placeholder = "Answer"
                 };
-
+                questions.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+                questions.Children.Add(qNum, 0, i);
+                questions.Children.Add(equation, 1, i);
+                questions.Children.Add(ans, 2, i);
             }
+            StackLayout questionStack = new StackLayout();
+            ScrollView scrollableQuestions = new ScrollView();
+            questionStack.Children.Add(questions);
+            scrollableQuestions.Content = questionStack;
+            Content = scrollableQuestions;
+
         }
 
         public int Number()
         {
-            Random r = new Random();
+            System.Threading.Thread.Sleep(2);
             return r.Next(0, 20);
         }
 
