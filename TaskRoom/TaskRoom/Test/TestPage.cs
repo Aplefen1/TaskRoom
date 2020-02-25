@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 
 using Xamarin.Forms;
+using System.Diagnostics;
 
 namespace TaskRoom.Test
 {

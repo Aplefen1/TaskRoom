@@ -16,7 +16,7 @@ namespace TaskRoom.Methods
     {
         public string status = "The big stink";
         public static readonly HttpClient Client = new HttpClient();
-        public string URL = "http://169.254.80.80:8000/";
+        public string URL = "http://10.84.129.125:1027/";
         public string returnedChildren;
         public List<string> returnedClasses;
 

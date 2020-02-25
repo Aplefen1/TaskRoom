@@ -7,6 +7,7 @@ using Xamarin.Forms;
 using System.Diagnostics;
 using TaskRoom.Methods;
 using TaskRoom.Objects;
+using TaskRoom.Pages;
 
 namespace TaskRoom
 {
@@ -47,6 +48,8 @@ namespace TaskRoom
         {
             List<Objects.Child> childrenInClass;
             childrenInClass = await Connection.GetChildren("Blue Class");
+            await Navigation.PushAsync(new LeaderboardView(childrenInClass));
+            Debug.WriteLine(childrenInClass[0].name);
         }
     }
 }
