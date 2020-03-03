@@ -12,6 +12,11 @@ namespace TaskRoom.Pages
     {
         public Entry Name, LName, UName, PWord, Age;
         public Webservice Connection = new Webservice();
+        public Label sendStatus = new Label
+        {
+            HorizontalOptions = LayoutOptions.CenterAndExpand,
+            VerticalOptions = LayoutOptions.StartAndExpand
+        };
 
         public CreateUser()
         {
@@ -31,6 +36,7 @@ namespace TaskRoom.Pages
                 Text = "Submit",
                 HorizontalOptions = LayoutOptions.EndAndExpand,
             };
+            
             Submit.Clicked += OnSubmit;
 
 
@@ -53,6 +59,7 @@ namespace TaskRoom.Pages
             entryStack.Children.Add(PWord);
             entryStack.Children.Add(Age);
             entryStack.Children.Add(Submit);
+            entryStack.Children.Add(sendStatus);
 
             container.Content = entryStack;
 
@@ -61,7 +68,7 @@ namespace TaskRoom.Pages
             Content = contentStack;
 
         }
-        public void OnSubmit(object Sender, EventArgs args)
+        public async void OnSubmit(object Sender, EventArgs args)
         {
             string inputtedName = Name.Text;
             string inputtedLName = LName.Text;
@@ -69,7 +76,15 @@ namespace TaskRoom.Pages
             string inputtedPWord = PWord.Text;
             string inputtedAge = Age.Text;
 
-            Connection.newUser(inputtedName, inputtedLName, inputtedUName, inputtedPWord, inputtedAge);
+            string status = await Connection.newUser(inputtedName, inputtedLName, inputtedUName, inputtedPWord, inputtedAge);
+            if (status == "True")
+            {
+                Navigation.PopAsync();
+            }
+            else
+            {
+                sendStatus.Text = "Something went wrong";
+            }
 
         }
 

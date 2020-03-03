@@ -72,12 +72,23 @@ namespace TaskRoom.Pages
             Navigation.PushAsync(new CreateUser());
         }
         //Function thats called when submit is pressed
-        public void OnSubmit(object Sender, EventArgs args)
+        public async void OnSubmit(object Sender, EventArgs args)
         {
             string a = UName.Text;
             string b = PWord.Text;
-            webservice.checkUser(a, b);
-            status.Text = webservice.status;
+            string loginStatus = await webservice.checkUser(a, b);
+            if (loginStatus == "Failed Login")
+            {
+                status.Text = "LoginFailed";
+            }
+            else
+            {
+                status.Text = "Success!";
+                Navigation.PopAsync();
+                Navigation.PopAsync();
+                Navigation.PushAsync(new MainPage());
+            }
+            
         }
 
     }

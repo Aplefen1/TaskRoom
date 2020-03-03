@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 
 using Xamarin.Forms;
+using TaskRoom.Pages;
 
 namespace TaskRoom
 {
@@ -39,6 +40,7 @@ namespace TaskRoom
             {
                 Text = "Change Profile Information",
             };
+            ChangeProfile.Clicked += OnChangeProfileClicked;
             Button ClassInformation = new Button
             {
                 Text = "View Class Information",
@@ -83,6 +85,11 @@ namespace TaskRoom
             SettingsContent.Children.Add(container);
             Content = Interactables;
         }
-	}
+        public void OnChangeProfileClicked(object sender, EventArgs args)
+        {
+            Navigation.PushAsync(new ViewUserInfo());
+        }
+
+    }
 
 }
