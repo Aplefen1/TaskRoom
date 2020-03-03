@@ -12,13 +12,14 @@ namespace TaskRoom
     {
         public TaskPage()
         {
+            //creates the two stacklayouts for the page
             StackLayout TaskContent = new StackLayout() {
                 Spacing = 20};
             StackLayout PageContent = new StackLayout();
 
             Padding = new Thickness(30);
 
-            //
+            //creates the grid for the settings page
             var grid = new Grid();
 
             grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Auto) });
