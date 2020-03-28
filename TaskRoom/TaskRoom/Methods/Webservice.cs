@@ -82,7 +82,7 @@ namespace TaskRoom.Methods
             return Data.children;
         }
 
-        public async Task<List<string>> getClassrooms()
+        public async Task<List<string>> GetClassrooms()
         {
             string rURL = URL + "returnClasses";
             var response = await Client.GetAsync(rURL);
