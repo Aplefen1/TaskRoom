@@ -69,6 +69,20 @@ namespace TaskRoom
                 VerticalOptions = LayoutOptions.Start,
             };
 
+            Label loginMessage = new Label
+            {
+                Text = "You are loggeds in as:",
+                FontSize = Device.GetNamedSize(NamedSize.Small, typeof(Label)),
+                VerticalOptions = LayoutOptions.Start,
+            };
+
+            Label loginInfo = new Label
+            {
+                Text = GlobalVariables.username,
+                FontSize = Device.GetNamedSize(NamedSize.Small, typeof(Label)),
+                VerticalOptions = LayoutOptions.Start,
+            };
+
             var Buttons = new List<Button> { Tasks, Leaderboards, Settings, Login };
 
             StackA.Children.Add(Welcome);
@@ -76,6 +90,10 @@ namespace TaskRoom
             {
                 StackA.Children.Add(Butt);
             };
+            StackA.Children.Add(loginMessage);
+            StackA.Children.Add(loginInfo);
+
+            loginInfo.Text = GlobalVariables.username;
 
             container.Content = StackA;
             MainStack.Children.Add(container);

@@ -20,7 +20,7 @@ namespace TaskRoom.Methods
         public string returnedChildren;
         public List<string> returnedClasses;
 
-        public async void newUser(string name, string lastName, string username, string password, string age)
+        public async Task<string> newUser(string name, string lastName, string username, string password, string age)
         {
             //This is the URL to the part of the API that contains a function that inserts the record to the database
             string gURL = URL + "newChild";
@@ -41,9 +41,10 @@ namespace TaskRoom.Methods
             //request.ContentType = "application/x-www-form-urlencoded";
             var response = await Client.PostAsync(gURL, content);
             var responseString = await response.Content.ReadAsStringAsync();
+            return responseString;
         }
 
-        public async void checkUser(string username, string password)
+        public async Task<string> checkUser(string username, string password)
         {
             //adds the url for the login checking view
             string cURL = URL + "confirmLogin";
@@ -60,7 +61,15 @@ namespace TaskRoom.Methods
             var response = await Client.PostAsync(cURL, content);
             string responseString = await response.Content.ReadAsStringAsync();
             //the response is set to the status attribute in the class to be used externally as an indicator
-            status = responseString;
+            if (responseString == "True")
+            {
+                GlobalVariables.username = username;
+                return username;
+            }
+            else
+            {
+                return "Failed Login";
+            }
 
         }
 
@@ -95,6 +104,24 @@ namespace TaskRoom.Methods
             return Data.names;
             //Debug.WriteLine(returnedClasses[0]);
 
+        }
+
+        public async Task<JsonChild> GetChildData()
+        {
+            string tUrl = URL + "ReturnChildData";
+
+            Dictionary<string, string> postData = new Dictionary<string, string>()
+            {
+                {"username", GlobalVariables.username }
+            };
+
+            var content = new FormUrlEncodedContent(postData);
+            var response = await Client.PostAsync(tUrl, content);
+            var responseString = await response.Content.ReadAsStringAsync();
+
+            JsonChild returnedChild = JsonConvert.DeserializeObject<JsonChild>(responseString);
+
+            return returnedChild;
         }
     }
 }
