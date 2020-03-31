@@ -10,18 +10,22 @@ namespace TaskRoom.Pages
 {
     public class CreateUser : ContentPage
     {
+        //All the entrys needed
         public Entry Name, LName, UName, PWord, Age;
         public Webservice Connection = new Webservice();
+        //Label to display message from webservice
         public Label sendStatus = new Label
         {
             HorizontalOptions = LayoutOptions.CenterAndExpand,
             VerticalOptions = LayoutOptions.StartAndExpand
         };
 
+
         public CreateUser()
         {
             StackLayout entryStack = new StackLayout();
             StackLayout contentStack = new StackLayout();
+            //frame to contain entries
             Frame container = new Frame
             {
                 BorderColor = Color.White,
@@ -29,8 +33,10 @@ namespace TaskRoom.Pages
                 HorizontalOptions = LayoutOptions.CenterAndExpand,
                 VerticalOptions = LayoutOptions.StartAndExpand
             };
+
             var entry = new Entry { HorizontalOptions = LayoutOptions.CenterAndExpand };
 
+            //Button for the user to push to submit answers
             var Submit = new Button
             {
                 Text = "Submit",
@@ -40,7 +46,7 @@ namespace TaskRoom.Pages
             Submit.Clicked += OnSubmit;
 
 
-            
+            //initialising the entries
             Name = new Entry { HorizontalOptions = LayoutOptions.CenterAndExpand };
             LName = new Entry { HorizontalOptions = LayoutOptions.CenterAndExpand };
             UName = new Entry { HorizontalOptions = LayoutOptions.CenterAndExpand };
@@ -53,6 +59,7 @@ namespace TaskRoom.Pages
             PWord.Placeholder = "Password";
             Age.Placeholder = "Age";
 
+            //adding entries to the stack
             entryStack.Children.Add(Name);
             entryStack.Children.Add(LName);
             entryStack.Children.Add(UName);
@@ -70,17 +77,21 @@ namespace TaskRoom.Pages
         }
         public async void OnSubmit(object Sender, EventArgs args)
         {
+            //Getting the inputted text from the entries
             string inputtedName = Name.Text;
             string inputtedLName = LName.Text;
             string inputtedUName = UName.Text;
             string inputtedPWord = PWord.Text;
             string inputtedAge = Age.Text;
 
+            //Awaits for a confirmation string from the connection class
             string status = await Connection.newUser(inputtedName, inputtedLName, inputtedUName, inputtedPWord, inputtedAge);
+            //removes the page from the navigation stack if it successful
             if (status == "True")
             {
                 Navigation.PopAsync();
             }
+            //changes the status label if it was not successful
             else
             {
                 sendStatus.Text = "Something went wrong";

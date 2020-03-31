@@ -18,17 +18,20 @@ namespace TaskRoom.Pages
         public ViewUserInfo()
         {
             
-
+            //If the username is Guest display this
             if (GlobalVariables.username == "Guest")
             {
+                //message to indicate the user is not logged in
                 Label message = new Label
                 {
                     HorizontalOptions = LayoutOptions.CenterAndExpand,
                     VerticalOptions = LayoutOptions.CenterAndExpand,
                     Text = "You are logged in as guest"
                 };
+                //adds label to stack
                 infoStack.Children.Add(message);
             }
+            //otherwise run this function
             else
             {
                 SetContent();
@@ -38,8 +41,10 @@ namespace TaskRoom.Pages
 
         public async void SetContent()
         {
+            //makes a new JsonChild object from webservice class
             JsonChild child = await webservice.GetChildData();
             
+            //creates the label using information from JsonChild Class
             Label name = new Label
             {
                 Text = child.firstname
@@ -60,6 +65,7 @@ namespace TaskRoom.Pages
             {
                 Text = child.points.ToString()
             };
+            //Adds each label to the stack
             infoStack.Children.Add(name);
             infoStack.Children.Add(lastName);
             infoStack.Children.Add(username);

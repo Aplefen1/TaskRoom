@@ -5,6 +5,7 @@ using System.Text;
 
 using Xamarin.Forms;
 using TaskRoom.Methods;
+using TaskRoom.Objects;
 
 namespace TaskRoom.Pages
 {
@@ -77,15 +78,20 @@ namespace TaskRoom.Pages
             string a = UName.Text;
             string b = PWord.Text;
             string loginStatus = await webservice.checkUser(a, b);
+            //Sets the status label to login failed if the webservice returns "Failed Login"
             if (loginStatus == "Failed Login")
             {
                 status.Text = "LoginFailed";
             }
             else
             {
+                //Sets global username to the inputted username
+                GlobalVariables.username = UName.Text;
                 status.Text = "Success!";
+                //Pops the two pages
                 Navigation.PopAsync();
                 Navigation.PopAsync();
+                //creates a new main page
                 Navigation.PushAsync(new MainPage());
             }
             

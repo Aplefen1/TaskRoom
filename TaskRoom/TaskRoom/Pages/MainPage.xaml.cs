@@ -30,52 +30,53 @@ namespace TaskRoom
             Padding = new Thickness(30);
 
             //Elements in the stack
+            //Settings
             Button Settings = new Button
             {
                 Text = "Settings",
-                FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label)),
+                FontSize = Device.GetNamedSize(NamedSize.Small, typeof(Label)),
                 VerticalOptions = LayoutOptions.End,
                 HorizontalOptions = LayoutOptions.CenterAndExpand,
             };
-
+            //Leaderboards
             Button Leaderboards = new Button
             {
                 Text = "Leaderboards",
-                FontSize = Device.GetNamedSize(NamedSize.Large, typeof(Label)) * 1.4,
+                FontSize = Device.GetNamedSize(NamedSize.Small, typeof(Label)),
                 VerticalOptions = LayoutOptions.CenterAndExpand,
             };
             Leaderboards.Clicked += OnLeaderboardsClicked;
-
+            //Tasks
             Button Tasks = new Button
             {
                 Text = "Tasks",
-                FontSize = Device.GetNamedSize(NamedSize.Large, typeof(Label)) * 2,
+                FontSize = Device.GetNamedSize(NamedSize.Small, typeof(Label)),
                 VerticalOptions = LayoutOptions.CenterAndExpand,
             };
-
+            //Login
             Button Login = new Button
             {
                 Text = "Login",
-                FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label)),
+                FontSize = Device.GetNamedSize(NamedSize.Small, typeof(Label)),
                 VerticalOptions = LayoutOptions.End,
                 HorizontalOptions = LayoutOptions.End
             };
             Login.Clicked += OnLoginClicked;
-
+            //Welcome
             Label Welcome = new Label
             {
                 Text = "Welcome To task Room!!",
-                FontSize = Device.GetNamedSize(NamedSize.Large, typeof(Label)),
+                FontSize = Device.GetNamedSize(NamedSize.Small, typeof(Label)),
                 VerticalOptions = LayoutOptions.Start,
             };
-
+            //Login message
             Label loginMessage = new Label
             {
                 Text = "You are loggeds in as:",
                 FontSize = Device.GetNamedSize(NamedSize.Small, typeof(Label)),
                 VerticalOptions = LayoutOptions.Start,
             };
-
+            //Info aboput cunnrently loggied in user
             Label loginInfo = new Label
             {
                 Text = GlobalVariables.username,
@@ -83,11 +84,14 @@ namespace TaskRoom
                 VerticalOptions = LayoutOptions.Start,
             };
 
+            //List of buttons
             var Buttons = new List<Button> { Tasks, Leaderboards, Settings, Login };
 
             StackA.Children.Add(Welcome);
+            //Iterates through buttons
             foreach (Button Butt in Buttons)
             {
+                //adds button to stack
                 StackA.Children.Add(Butt);
             };
             StackA.Children.Add(loginMessage);
@@ -107,20 +111,24 @@ namespace TaskRoom
 
         public void OnSettingsClicked(object sender, EventArgs args)
         {
+            //Pushes Settings Page
             Navigation.PushAsync(new SettingsPage());
         }
         public void OnTasksClicked(object sender, EventArgs args)
         {
-            Navigation.PushAsync(new TestPage());
+            //Pushes Test Page
+            Navigation.PushAsync(new TaskPage());
         }
 
         public void OnLeaderboardsClicked(object sender, EventArgs args)
         {
+            //Pushes Leaderboard page
             Navigation.PushAsync(new LeaderboardPage());
         }
 
         public void OnLoginClicked(object sender, EventArgs args)
         {
+            //pushes Login page
             Navigation.PushAsync(new LoginPage());
         }
     }

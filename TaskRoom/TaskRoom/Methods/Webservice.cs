@@ -16,7 +16,7 @@ namespace TaskRoom.Methods
     {
         public string status = "The big stink";
         public static readonly HttpClient Client = new HttpClient();
-        public string URL = "http://10.84.129.125:1027/";
+        public string URL = "http://172.17.217.17:8000/";
         public string returnedChildren;
         public List<string> returnedClasses;
 
@@ -49,7 +49,7 @@ namespace TaskRoom.Methods
             //adds the url for the login checking view
             string cURL = URL + "confirmLogin";
 
-            
+
             Dictionary<string, string> postData = new Dictionary<string, string>()
             {
                 { "username", username },
@@ -109,6 +109,26 @@ namespace TaskRoom.Methods
         public async Task<JsonChild> GetChildData()
         {
             string tUrl = URL + "ReturnChildData";
+            //makes a dictionary using the global variables class.
+            Dictionary<string, string> postData = new Dictionary<string, string>()
+            {
+                {"username", GlobalVariables.username }
+            };
+            //encodes the dictionary
+            var content = new FormUrlEncodedContent(postData);
+            //sends and recieves the response from the webservice
+            var response = await Client.PostAsync(tUrl, content);
+            var responseString = await response.Content.ReadAsStringAsync();
+
+            //deserialises the response into the JsonChild Object created and returns the returned child
+            JsonChild returnedChild = JsonConvert.DeserializeObject<JsonChild>(responseString);
+
+            return returnedChild;
+        }
+
+        public async Task<JsonTask> GetTaskData()
+        {
+            string tUrl = URL + "ReturnTask";
 
             Dictionary<string, string> postData = new Dictionary<string, string>()
             {
@@ -116,12 +136,23 @@ namespace TaskRoom.Methods
             };
 
             var content = new FormUrlEncodedContent(postData);
+            //sends and recieves the response from the webservice
             var response = await Client.PostAsync(tUrl, content);
             var responseString = await response.Content.ReadAsStringAsync();
 
-            JsonChild returnedChild = JsonConvert.DeserializeObject<JsonChild>(responseString);
+            //deserialises the response into the JsonTask Object created and returns the returned Task
+            try { JsonTask returnedTask = JsonConvert.DeserializeObject<JsonTask>(responseString);
+                return returnedTask;
+            }
 
-            return returnedChild;
-        }
+            catch
+            {
+                var Error = new JsonTask { dueDate = "NA", taskDescription = "NA", taskName = "Na" };
+                return Error;
+            }
+            }
+            
+
+            
     }
 }
